@@ -2,7 +2,7 @@ import {expect} from 'chai'
 
 import {decodeContent, encodeContent} from '../src'
 
-function swapEntry([key, value]) {
+function swapEntry<K, V>([key, value]: [K, V]) {
 	return ([value, key])
 }
 
@@ -21,7 +21,7 @@ describe('encoding-utils', () => {
         })
     })
     describe('decodeContent', () => {
-        testFixture.map(swapEntry).forEach(([input, expected]) => {
+        testFixture.map(swapEntry).forEach(([input, expected]: [string, string]) => {
             it(`string to decode: '${input}'`, () => {
                 expect(decodeContent(input)).to.be.equal(expected)
             })
